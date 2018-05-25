@@ -4,10 +4,11 @@
 //
 //  Created by Martín Alegria Vizcaya on 24/05/18.
 //  Copyright © 2018 Martín Alegria Vizcaya. All rights reserved.
-//
+// DARK MODE = 11 PERCENT
 
 import SpriteKit
 import GameplayKit
+import UIKit
 
 class GameScene: SKScene {
     
@@ -19,6 +20,9 @@ class GameScene: SKScene {
     let light4 = SKShapeNode(circleOfRadius: 100)
     let light5 = SKShapeNode(circleOfRadius: 100)
     let light6 = SKShapeNode(circleOfRadius: 100)
+    
+    var correctLight = SKShapeNode()
+    var fakeLight = SKShapeNode()
     
     var colors: [SKColor] = []
     
@@ -35,7 +39,12 @@ class GameScene: SKScene {
     var gameTime = 60
     var gameTimer = Timer()
     
+    var score = 0
+    
     let timerLabel = SKLabelNode(fontNamed: "Arial")
+    let scoreLabel = SKLabelNode(fontNamed: "Arial")
+    
+    var viewController = GameViewController()
     
     func colorsFunc() -> SKColor{
         colors.append(blue)
@@ -69,12 +78,13 @@ class GameScene: SKScene {
         
         if gameTime == 0{
             gameTimer.invalidate()
+            
         }
     }
     
     func timerSetUp(){
         timerLabel.position = CGPoint(x: frame.midX + 225, y: frame.maxY - 160)
-        timerLabel.fontColor = SKColor.white
+        timerLabel.fontColor = SKColor.black
         timerLabel.fontSize = 100
         timerLabel.text = String(gameTime)
         self.addChild(timerLabel)
@@ -83,11 +93,37 @@ class GameScene: SKScene {
         
     }
     
+    func scoreSetUp(){
+        scoreLabel.position = CGPoint(x: frame.midX - 225, y: frame.maxY - 160)
+        scoreLabel.fontColor = SKColor.black
+        scoreLabel.fontSize = 90
+        scoreLabel.text = String(score)
+        self.addChild(scoreLabel)
+        
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch = touches.first!
+        let touchLocation = touch.location(in: self)
+        
+        if correctLight.contains(touchLocation){
+            score += 1
+            scoreLabel.text = String(score)
+            correctColor = colorsFunc()
+            fakeColor = fakeColorSet()
+            correctColorWindow.fillColor = correctColor
+            randomCircle()
+        }
+        
+    }
+
+    
     override func didMove(to view: SKView) {
         correctColor = colorsFunc()
         fakeColor = fakeColorSet()
         setUpUI()
         timerSetUp()
+        scoreSetUp()
         randomCircle()
     }
     
@@ -146,9 +182,11 @@ class GameScene: SKScene {
                 
                 lights[rand1].isHidden = false
                 lights[rand1].fillColor = correctColor
+                correctLight = lights[rand1]
                 
                 lights[rand2].isHidden = false
                 lights[rand2].fillColor = fakeColor
+                fakeLight = lights[rand2]
                 
             }else{
                 light.isHidden = true
