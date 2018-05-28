@@ -12,7 +12,12 @@ import UIKit
 
 class GameScene: SKScene {
     
+    let userDefs = UserDefaults.standard
+    
     var lights: [SKShapeNode] = []
+    
+    let startScreen = SKSpriteNode()
+    var start = false
     
     let light1 = SKShapeNode(circleOfRadius: 100)
     let light2 = SKShapeNode(circleOfRadius: 100)
@@ -44,7 +49,6 @@ class GameScene: SKScene {
     let timerLabel = SKLabelNode(fontNamed: "Arial")
     let scoreLabel = SKLabelNode(fontNamed: "Arial")
     
-    var viewController = GameViewController()
     
     func colorsFunc() -> SKColor{
         colors.append(blue)
@@ -78,7 +82,12 @@ class GameScene: SKScene {
         
         if gameTime == 0{
             gameTimer.invalidate()
+            userDefs.set(score, forKey: "highScore")
             
+            let gameOver = GameOverScene()
+            gameOver.size = frame.size
+            let trans = SKTransition.reveal(with: SKTransitionDirection.up, duration: 1)
+            self.view?.presentScene(gameOver, transition: trans)
         }
     }
     
@@ -106,8 +115,24 @@ class GameScene: SKScene {
         let touch = touches.first!
         let touchLocation = touch.location(in: self)
         
+        if !start{
+            
+            if startScreen.contains(touchLocation){
+                start = true
+                startScreen.isHidden = true
+                play()
+            }
+            
+        }
+        
         if correctLight.contains(touchLocation){
             score += 1
+            scoreLabel.text = String(score)
+            correctColor = colorsFunc()
+            fakeColor = fakeColorSet()
+            correctColorWindow.fillColor = correctColor
+            randomCircle()
+        }else if fakeLight.contains(touchLocation){
             scoreLabel.text = String(score)
             correctColor = colorsFunc()
             fakeColor = fakeColorSet()
@@ -122,6 +147,9 @@ class GameScene: SKScene {
         correctColor = colorsFunc()
         fakeColor = fakeColorSet()
         setUpUI()
+    }
+    
+    func play(){
         timerSetUp()
         scoreSetUp()
         randomCircle()
@@ -163,6 +191,13 @@ class GameScene: SKScene {
         correctColorWindow.fillColor = correctColor
         correctColorWindow.lineWidth  = 0
         self.addChild(correctColorWindow)
+        
+        self.backgroundColor = .white
+        
+        startScreen.size = frame.size
+        startScreen.texture = SKTexture(image: UIImage(named: "startScreenText")!)
+        startScreen.position = CGPoint(x: frame.midX, y: frame.midY)
+        self.addChild(startScreen)
         
     }
     
