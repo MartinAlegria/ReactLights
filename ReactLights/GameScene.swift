@@ -41,14 +41,13 @@ class GameScene: SKScene {
     var correctColor = SKColor()
     var fakeColor = SKColor()
     
-    var gameTime = 60
+    var gameTime = 30
     var gameTimer = Timer()
     
     var score = 0
     
     let timerLabel = SKLabelNode(fontNamed: "Arial")
     let scoreLabel = SKLabelNode(fontNamed: "Arial")
-    
     
     func colorsFunc() -> SKColor{
         colors.append(blue)
