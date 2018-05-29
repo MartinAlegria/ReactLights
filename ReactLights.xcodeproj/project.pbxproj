@@ -21,7 +21,7 @@
 		5839DCEF20B7B59000F628DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5839DCED20B7B59000F628DE /* LaunchScreen.storyboard */; };
 		5839DCFA20B7B59000F628DE /* ReactLightsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5839DCF920B7B59000F628DE /* ReactLightsTests.swift */; };
 		5839DD0520B7B59000F628DE /* ReactLightsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5839DD0420B7B59000F628DE /* ReactLightsUITests.swift */; };
-		5839DD1320B7C24500F628DE /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5839DD1220B7C24500F628DE /* MenuViewController.swift */; };
+		5842566B20BCDA6E009A8E52 /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5842566A20BCDA6E009A8E52 /* UIDevice.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,7 +62,7 @@
 		5839DD0020B7B59000F628DE /* ReactLightsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReactLightsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5839DD0420B7B59000F628DE /* ReactLightsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactLightsUITests.swift; sourceTree = "<group>"; };
 		5839DD0620B7B59000F628DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5839DD1220B7C24500F628DE /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		5842566A20BCDA6E009A8E52 /* UIDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDevice.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,12 +118,12 @@
 				5839DCE220B7B58C00F628DE /* Actions.sks */,
 				5839DCE420B7B58C00F628DE /* GameScene.swift */,
 				582FBA7B20B881030067A2BF /* MenuScene.swift */,
+				5842566A20BCDA6E009A8E52 /* UIDevice.swift */,
 				582FBA7520B8807B0067A2BF /* MenuScene.sks */,
 				5839DCE620B7B58C00F628DE /* GameViewController.swift */,
 				5839DCE820B7B58C00F628DE /* Main.storyboard */,
 				582FBA8220B88D380067A2BF /* GameOverScene.sks */,
 				582FBA8420B88D520067A2BF /* GameOverScene.swift */,
-				5839DD1220B7C24500F628DE /* MenuViewController.swift */,
 				5839DCEB20B7B59000F628DE /* Assets.xcassets */,
 				5839DCED20B7B59000F628DE /* LaunchScreen.storyboard */,
 				5839DCF020B7B59000F628DE /* Info.plist */,
@@ -285,11 +285,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				5839DCE520B7B58C00F628DE /* GameScene.swift in Sources */,
+				5842566B20BCDA6E009A8E52 /* UIDevice.swift in Sources */,
 				5839DCE720B7B58C00F628DE /* GameViewController.swift in Sources */,
 				582FBA7C20B881030067A2BF /* MenuScene.swift in Sources */,
 				5839DCDF20B7B58C00F628DE /* AppDelegate.swift in Sources */,
 				582FBA8520B88D520067A2BF /* GameOverScene.swift in Sources */,
-				5839DD1320B7C24500F628DE /* MenuViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

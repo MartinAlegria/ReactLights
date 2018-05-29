@@ -110,6 +110,8 @@ class GameScene: SKScene {
         
     }
     
+    //TOUCHES BEGAN  *******************************************************************************************
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first!
         let touchLocation = touch.location(in: self)
@@ -141,8 +143,10 @@ class GameScene: SKScene {
         
     }
 
+    //DID MOVE  *******************************************************************************************
     
     override func didMove(to view: SKView) {
+        self.scaleMode = .aspectFill
         correctColor = colorsFunc()
         fakeColor = fakeColorSet()
         setUpUI()

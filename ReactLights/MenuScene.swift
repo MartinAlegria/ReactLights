@@ -14,20 +14,24 @@ class MenuScene: SKScene {
     let label = SKLabelNode()
     let play = SKLabelNode()
     let game = GameScene()
+    let model = UIDevice.modelName
+    
+    func fontSize() -> CGFloat{
+        if model == "iPhone X" || model == "Simulator iPhone X"{return 80}
+        else{return 100}
+    }
 
     override func didMove(to view: SKView) {
-        
         self.backgroundColor = .white
-        
         label.position = CGPoint(x: frame.midX, y: frame.midY + 100)
         label.text = "REACT LIGHTS"
-        label.fontSize = 100
+        label.fontSize = fontSize()
         label.fontColor = .black
         self.addChild(label)
         
         play.position = CGPoint(x: frame.midX, y: frame.midY - 100)
         play.text = "PLAY"
-        play.fontSize = 100
+        play.fontSize = fontSize()
         play.fontColor = .black
         self.addChild(play)
     }
