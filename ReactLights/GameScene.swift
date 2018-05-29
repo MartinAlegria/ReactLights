@@ -13,10 +13,12 @@ import UIKit
 class GameScene: SKScene {
     
     let userDefs = UserDefaults.standard
+    var pause = false
     
     var lights: [SKShapeNode] = []
     
     let startScreen = SKSpriteNode()
+    let pauseScreen = SKSpriteNode()
     var start = false
     
     let light1 = SKShapeNode(circleOfRadius: 100)
@@ -126,19 +128,31 @@ class GameScene: SKScene {
             
         }
         
-        if correctLight.contains(touchLocation){
+        if correctLight.contains(touchLocation) && !pause{
             score += 1
             scoreLabel.text = String(score)
             correctColor = colorsFunc()
             fakeColor = fakeColorSet()
             correctColorWindow.fillColor = correctColor
             randomCircle()
-        }else if fakeLight.contains(touchLocation){
+            
+        }else if fakeLight.contains(touchLocation) && !pause{
+            
             scoreLabel.text = String(score)
             correctColor = colorsFunc()
             fakeColor = fakeColorSet()
             correctColorWindow.fillColor = correctColor
             randomCircle()
+        }else if correctColorWindow.contains(touchLocation) && pause == false{
+            
+            gameTimer.invalidate()
+            pause = true
+            pauseScreen.isHidden = false
+        }else if correctColorWindow.contains(touchLocation) && pause == true{
+            
+            gameTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(GameScene.time), userInfo: nil, repeats: true)
+            pause = false
+            pauseScreen.isHidden = true
         }
         
     }
@@ -201,6 +215,12 @@ class GameScene: SKScene {
         startScreen.texture = SKTexture(image: UIImage(named: "startScreenText")!)
         startScreen.position = CGPoint(x: frame.midX, y: frame.midY)
         self.addChild(startScreen)
+        
+        pauseScreen.size = frame.size
+        pauseScreen.texture = SKTexture(image: UIImage(named: "pauseScreen")!)
+        pauseScreen.position = CGPoint(x: frame.midX, y: frame.midY)
+        self.addChild(pauseScreen)
+        pauseScreen.isHidden = true
         
     }
     
